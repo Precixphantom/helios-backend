@@ -18,6 +18,8 @@ app.use(cors({
   origin: [
     'http://localhost:3000',
     'https://fotunafx-96277721190.europe-west1.run.app',
+    'https://fotunafx.web.app',
+    'https://www.fotunafx.web.app',
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
