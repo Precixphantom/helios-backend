@@ -4,7 +4,7 @@ import axios from 'axios';
 import pool from '../config/db.js';
 
 // const ML_ENGINE_URL = 'https://helios-ml-engine-183763913483.europe-west1.run.app/fx/decision';
-const ML_ENGINE_URL = ' https://helios-ml-engine-96277721190.europe-west1.run.app';
+const ML_ENGINE_URL = 'https://helios-ml-engine-96277721190.europe-west1.run.app/fx/decision';
 
 export const syncMLSignal = async () => {
   try {
@@ -13,6 +13,11 @@ export const syncMLSignal = async () => {
     // Call the ML model
     const response = await axios.get(ML_ENGINE_URL);
     const data = response.data;
+
+    if (!data.confidence || !data.decision) {
+    console.log('ML engine not ready yet, skipping sync');
+    return null;
+    }
 
     console.log('ML engine response:', JSON.stringify(data, null, 2));
 
